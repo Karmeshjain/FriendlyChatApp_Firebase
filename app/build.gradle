@@ -43,5 +43,8 @@ dependencies {
 
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
     implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.google.firebase:firebase-storage:20.1.0'
+    implementation  'com.google.firebase:firebase-messaging:23.1.2'
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
 }
