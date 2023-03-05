@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==RC_SIGN_IN)
         {
@@ -300,8 +300,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Signed Out from App!", Toast.LENGTH_SHORT).show();
                 finish();
             }
-            else if(requestCode== RC_PHOTO_PICKER && resultCode==RESULT_OK)
+            else if(requestCode== RC_PHOTO_PICKER)
             {
+
                 Uri selectedImageUri=data.getData();
                 StorageReference photoRef=mChatPhotosStorageReference.child(selectedImageUri.getLastPathSegment());
                 photoRef.putFile(selectedImageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -334,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if(mAuthStateListener !=null )
+        if(mAuthStateListener !=null)
         mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
         detachChildEventListener();
         mMessageAdapter.clear();
@@ -357,4 +358,6 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    
 }
